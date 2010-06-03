@@ -43,69 +43,69 @@ Check is an easy to use, easy to customize, validation micro-framework for javas
 
 ### Built-in rules
 
-*		defined()
+*	defined()
 
-		value must not be null or undefined
+	value must not be null or undefined
 		
-* 	is(data)
+* is(data)
 
-		tests strict equality (===)
+	tests strict equality (===)
 		
-* 	type(String || [String, ...])
+* type(String || [String, ...])
 
-		typeof tested value must be one of the types specified
+	typeof tested value must be one of the types specified
 		
-* 	gt(Number)
+* gt(Number)
 
-		value must be greater than specified number
+	value must be greater than specified number
 		
-* 	lt(Number)
+* lt(Number)
 
-		value must be less than specified number
+	value must be less than specified number
 		
-* 	al(Number)
+* al(Number)
 
-		value must be at least specified number
+	value must be at least specified number
 		
-* 	am(Number)
+* am(Number)
 
-		value must be at most specified number
+	value must be at most specified number
 		
-* 	between(Number, Number)
+* between(Number, Number)
 
-		value must be between the two specified numbers, numbers included (between(10, 20) validates 10 and 20)
+	value must be between the two specified numbers, numbers included (between(10, 20) validates 10 and 20)
 
 
 
 ### Built-in assertions
 
-* 	equal(a, b)
+* equal(a, b)
 
-		a === b
+	a === b
+
+* defined(a)
+
+	a !== null && a !== undefined
 		
-* 	defined(a)
+* type(a, someType)
 
-		a !== null && a !== undefined
+	typeof a === someType
 		
-* 	type(a, someType)
+* greaterThan(a, b)
 
-		typeof a === someType
+	a > b
 		
-* 	greaterThan(a, b)
+* lessThan(a, b)
 
-		a > b
+	a < b
 		
-* 	lessThan(a, b)
+* atLeast(a, b)
 
-		a < b
+	a >= b
 		
-* 	atLeast(a, b)
+* atMost(a, b)
 
-		a >= b
-		
-* 	atMost(a, b)
-
-		a <= b
+	a <= b
 
 
 ### Custom rules
