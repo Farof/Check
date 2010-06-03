@@ -173,4 +173,32 @@ describe "validator.js"
 			-{ v(10) }.should.throw_error 'Expected 10 to be at least 18'
 		end
 	end
+	
+	describe "-> valid"
+		before
+			v = Check.build(function() {
+				this.valid();
+			});
+		end
+		
+		it "should always be true"
+			v(false).should.be_true 
+			v(true).should.be_true 
+			v('plop').should.be_true 
+			v(null).should.be_true 
+		end
+	end
+	
+	describe "-> invalid"
+		before
+			v = Check.build(function() {
+				this.invalid();
+			});
+		end
+		
+		it "should always throw error"
+			-{ v(true) }.should.throw_error 
+			-{ v('plop') }.should.throw_error 
+		end
+	end
 end

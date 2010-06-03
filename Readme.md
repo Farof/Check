@@ -75,6 +75,14 @@ Check is an easy to use, easy to customize, validation micro-framework for javas
 
 	value must be between the two specified numbers, numbers included (between(10, 20) validates 10 and 20)
 
+* valid()
+
+	rule always validate
+
+* invalid()
+
+	rule always throw error
+
 
 
 ### Built-in assertions
