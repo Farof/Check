@@ -63,6 +63,11 @@ Check is an easy to use, easy to customize, validation micro-framework for javas
 		// code if validation failed
 	}
 
+### Custom error message
+
+	Check.rules.defined.errorMsg = 'Field must be filled';
+
+
 ## Documentation
 
 ### Built-in rules
@@ -150,6 +155,24 @@ Look at the "Quick how-to" and how the built-in rules are created to fully under
 Rules support asynchronous validation.
 
 
+### Custom error message
+
+	Check.rules.defined.errorMsg = 'Field must be filled';
+	
+	var validate = Check.build(function() {
+		this.defined();
+	});
+	
+	try {
+		validate(null);
+	} catch(e) {
+		alert(e.message); // 'Field must be filled'
+	}
+
+Note: At the moment, message customization affects all validator. That is, between two change of the message. You can change the message, validate, then restore it to default or something else.  
+Let me know if error message customization "by validator" is something you need, I'll maybe add the feature.
+
+
 ## Supported plateforms
 
 * Firefox: 3.5, 3.6, Minefield
@@ -165,7 +188,7 @@ The following are untested:
 
 ## Todo
 
-* Custom built-in error message
+* Suggest anything ?
 
 ## License 
 
