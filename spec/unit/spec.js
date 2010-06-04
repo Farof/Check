@@ -202,7 +202,7 @@ describe "validator.js"
 		end
 	end
 	
-	describe "async validation"
+	describe "-> async validation"
 		before
 			v = Check.build(function() {
 				this.defined();
@@ -226,7 +226,7 @@ describe "validator.js"
 		end
 	end
 	
-	describe "async rule validation"
+	describe "-> async rule validation"
 		before
 			Check.addRule("asyncReady", function(val, callback) {
 				callback(null, this.assert.equal(val, 42));
@@ -251,6 +251,22 @@ describe "validator.js"
 				mark = true;
 			}
 			mark.should.be_true 
+		end
+	end
+	
+	describe "-> Rule message customization"
+		it "should be accessible"
+			Check.should.have_prop "rules"
+			Check.rules.defined.should.have_prop "errorMsg"
+		end
+		
+		it "should be customizable"
+			Check.rules.defined.errorMsg = "Customized error message!"
+			var v = Check.build(function() {
+				this.defined();
+			});
+			
+			-{ v(null) }.should.throw_error "Customized error message!"
 		end
 	end
 end
