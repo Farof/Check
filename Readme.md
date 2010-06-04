@@ -38,6 +38,30 @@ Check is an easy to use, easy to customize, validation micro-framework for javas
 		alert(e.message) // "Expected 10 to be at least 18"
 	}
 
+### Asynchronous validation
+
+	// The rule must not return any value if validation is asynchronous
+	Chack.addRule('usernameAvailable', function(username, callback) {
+		MockRequest( {
+			// request params
+			success: function(availability) {
+				callback(null, availability);
+			}
+		})
+	});
+	
+	var validate = Check.build(function() {
+		this.type('string').usernameAvailable();
+	});
+	
+	try {
+		validate('Farof', function() {
+			// code if validation succeeded
+			// display message saying username is ok
+		})
+	} catch(e) {
+		// code if validation failed
+	}
 
 ## Documentation
 
@@ -122,7 +146,8 @@ Check is an easy to use, easy to customize, validation micro-framework for javas
 		return this.someAssertions(val);
 	}, 'Custom error message with special params like {val} or {0}')
 
-Look at the "Quick how-to" and how the built-in rules are created to fully understand. Really, it's dead simple.
+Look at the "Quick how-to" and how the built-in rules are created to fully understand. Really, it's dead simple.  
+Rules support asynchronous validation.
 
 
 ## Supported plateforms
@@ -137,6 +162,10 @@ The following are untested:
 * Internet Explorer
 * node (jspec says 0 tests are executed...)
 
+
+## Todo
+
+* Custom built-in error message
 
 ## License 
 
