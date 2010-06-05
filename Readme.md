@@ -173,16 +173,17 @@ Note: At the moment, message customization affects all validator. That is, betwe
 Let me know if error message customization "by validator" is something you need, I'll maybe add the feature.
 
 
-## Supported plateforms
+## Supported plateforms (v0.2.1)
 
 * Firefox: 3.5, 3.6, Minefield
 * Safari: 4
 * Opera: 10
+* Internet Explorer: 7, 8
 
 The following are untested:
 
-* Chrome (jspec fails but Check should work)
-* Internet Explorer
+* Chrome (jspec fails due to a chrome bug but Check should work)
+* Internet Explorer: 9 (won't bother supporting ie6, glad if it works anyway (FYI v0.2.1 works in ie6))
 * node (jspec says 0 tests are executed...)
 
 
