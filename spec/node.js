@@ -1,5 +1,5 @@
 
-require.paths.unshift('spec', '/Users/farof/.gem/ruby/1.8/gems/jspec-4.3.1/lib', 'lib')
+require.paths.unshift('spec', 'spec/lib', 'lib')
 require('jspec')
 Check = require('check').Check;
 
