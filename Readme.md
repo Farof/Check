@@ -1,7 +1,7 @@
 
 # Check
 
-Check is an easy to use, easy to customize, validation micro-framework for javascript
+Check is a lightweight easy to use, easy to customize, validation micro-framework for javascript
 
 ## Quick how-to
 
