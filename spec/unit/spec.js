@@ -118,6 +118,54 @@ describe "validator.js"
       end
     end
     
+    describe "-> positiv"
+      before
+        v = Check.build(function() {
+          this.positiv();
+        });
+      end
+      
+      it "should return true if ok"
+        v(0).should.be_true 
+      end
+      
+      it "should throw error if false"
+        -{ v(-1) }.should.throw_error 'Expected -1 to be positiv'
+      end
+    end
+    
+    describe "-> negativ"
+      before
+        v = Check.build(function() {
+          this.negativ();
+        });
+      end
+      
+      it "should return true of ok"
+        v(0).should.be_true
+      end
+      
+      it "should throw error if false"
+        -{ v(1) }.should.throw_error 'Expected 1 to be negativ'
+      end
+    end
+    
+    describe "-> notZero"
+      before
+        v = Check.build(function() {
+          this.notZero();
+        })
+      end
+      
+      it "should return true if ok"
+        v(4).should.be_true 
+      end
+      
+      it "should throw error if false"
+        -{ v(0) }.should.throw_error 'Expected 0 to not be zero'
+      end
+    end
+    
     describe "-> between"
       before
         v = Check.build(function() {

@@ -99,6 +99,18 @@ Check is a lightweight easy to use, easy to customize, validation micro-framewor
 * am(Number)
 
 	value must be at most specified number
+
+* positiv()
+
+	value must be at least 0
+
+* negativ()
+
+	value must be at most 0 (0 is both positiv and negativ)
+
+* notZero()
+
+	value is different from 0
 		
 * between(Number, Number)
 
