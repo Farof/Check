@@ -28,7 +28,7 @@ Check is an easy to use, easy to customize, validation micro-framework for javas
 		return this.assert.atLeast(val, this.args[0]);
 	}, 'Expected {val} to be at least {0}');
 	
-	var validator = Check.build(function() {
+	var validate = Check.build(function() {
 		this.isMajor(18); // Majority is set to 18, corresponds to this.args[0] in the previous function
 	});
 	
