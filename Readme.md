@@ -201,6 +201,11 @@ The following are untested:
 
 ## Todo
 
+* "not" rule operator
+* "and" rule operator
+* "or" rule operator
+* string length rules
+* check type on range rule ?
 * Suggest anything ?
 
 ## License 
