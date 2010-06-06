@@ -25,11 +25,11 @@ Check is a lightweight easy to use, easy to customize, validation micro-framewor
 
 	Check.addRule('isMajor', function(val) {
 		// asserts the validated value is at least a later defined number
-		return this.assert.atLeast(val, this.args[0]);
+		return this.assert.atLeast(val, this.params[0]);
 	}, 'Expected {val} to be at least {0}');
 	
 	var validate = Check.build(function() {
-		this.isMajor(18); // Majority is set to 18, corresponds to this.args[0] in the previous function
+		this.isMajor(18); // Majority is set to 18, corresponds to this.params[0] in the previous function
 	});
 	
 	try {
