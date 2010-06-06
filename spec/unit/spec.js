@@ -309,12 +309,52 @@ describe "validator.js"
     end
     
     it "should be customizable"
+      var previous = Check.rules.defined.errorMsg;
       Check.rules.defined.errorMsg = "Customized error message!"
       var v = Check.build(function() {
         this.defined();
       });
       
       -{ v(null) }.should.throw_error "Customized error message!"
+      Check.rules.defined.errorMsg = previous;
+    end
+  end
+  
+  describe "-> operators"
+    describe "-> NOT"
+      before
+        v = Check.build(function() {
+          this.NOT(this.invalid('plop')).NOT(this.valid('plip'));
+        });
+      end
+      
+      it "should return true if ok"
+        v(null).should.be_true 
+      end
+      
+      it "should throw error if false"
+        -{ v(5) }.should.throw_error 'Expected 5 to not be defined'
+      end
+      
+      describe "-> async"
+        before
+          v = Check.build(function() {
+            this.NOT(this.asyncReady());
+          });
+        end
+        
+        it "should return true if ok"
+          mark = false;
+          v(40, function () { mark = true; })
+          mark.should.be_true 
+        end
+        
+        it "should throw error"
+          mark = false;
+          -{ v(42, function () { mark = true; }) }.should.throw_error 
+          mark.should.be_false 
+        end
+      end
     end
   end
 end
