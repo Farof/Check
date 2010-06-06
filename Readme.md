@@ -205,6 +205,7 @@ The following are untested:
 * "and" rule operator
 * "or" rule operator
 * string length rules
+* inclusion rule
 * check type on range rule ?
 * Suggest anything ?
 
