@@ -133,6 +133,22 @@ You can apply a NOT operator by prefixing the rule with a exclamation mark: !
 	}
 
 
+#### OR operator
+
+The validator can performs an OR operation when it detects an array as argument
+
+	var validate = Check.build([
+		{is: 42}, 
+		{between: [20, 30]}
+	]);
+	
+	try {
+		validate(nb);
+		// if nb is 42 OR nb is between 20 and 30 
+	} catch (e) {
+		// everything else
+	}
+
 ### Built-in assertions
 
 * equal(a, b)
@@ -207,7 +223,6 @@ The following are untested:
 
 ## Todo
 
-* "or" rule operator
 * string length rules
 * inclusion rule
 * check type on range rule ?
