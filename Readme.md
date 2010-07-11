@@ -127,6 +127,30 @@ Check is a lightweight easy to use, easy to customize, validation micro-framewor
 
 	value must be in specified array
 
+* length: Number
+
+	value length must be specified number
+
+* lengthAtLeast: Number
+
+	value length must be at least specified number
+
+* lengthAtMost: Number
+
+	value length must be at most specified number
+
+* longerThan: Number
+
+	value length must be more than specified number
+
+* shorterThan: Number
+
+	value length must be less than specified number
+
+* lengthBetween: [Number, Number]
+
+	value length must be between specified numbers
+
 
 #### NOT operator
 
@@ -232,7 +256,7 @@ The following are untested:
 
 ## Todo
 
-* string length rules
+* better error reporting for OR operator
 * Suggest anything ?
 
 ## License 

@@ -260,6 +260,103 @@ describe "validator.js"
     end
   end
   
+  describe "-> length rules"
+    describe "-> length"
+      before
+        v = Check.build({length: 5});
+      end
+    
+      it "should return true if ok"
+        v('farof').should.be_true 
+        v([1, 2, 3, 4, 5]).should.be_true 
+      end
+    
+      it "should throw error if false"
+        -{ v('Bob') }.should.throw_error 'Expected [Bob] to have a length of 5'
+        -{ v([1, 2]) }.should.throw_error 'Expected [1, 2] to have a length of 5'
+      end
+    end
+    
+    describe "-> lengthAtLeast"
+      before
+        v = Check.build({lengthAtLeast: 3});
+      end
+      
+      it "should return true if ok"
+        v('Bob').should.be_true 
+        v([1, 2, 3]).should.be_true 
+      end
+      
+      it "should throw error if false"
+        -{ v('Yo') }.should.throw_error 'Expected [Yo] length to be at least 3'
+        -{ v([1, 2]) }.should.throw_error 'Expected [1, 2] length to be at least 3'
+      end
+    end
+    
+    describe "-> lengthAtMost"
+      before
+        v = Check.build({lengthAtMost: 3});
+      end
+      
+      it "should return true if ok"
+        v('Bob').should.be_true 
+        v([1, 2, 3]).should.be_true 
+      end
+      
+      it "should throw error if false"
+        -{ v('Farof') }.should.throw_error 'Expected [Farof] length to be at most 3'
+        -{ v([1, 2, 3, 4]) }.should.throw_error 'Expected [1, 2, 3, 4] length to be at most 3'
+      end
+    end
+    
+    describe "-> longerThan"
+      before
+        v = Check.build({longerThan: 3});
+      end
+      
+      it "should return true if ok"
+        v('Farof').should.be_true 
+        v([1, 2, 3, 4]).should.be_true 
+      end
+      
+      it "should throw error if false"
+        -{ v('Bob') }.should.throw_error 'Expected [Bob] to be longer than 3'
+        -{ v([1, 2, 3]) }.should.throw_error 'Expected [1, 2, 3] to be longer than 3'
+      end
+    end
+    
+    describe "-> shorterThan"
+      before
+        v = Check.build({shorterThan: 3});
+      end
+      
+      it "should return true if ok"
+        v('Yo').should.be_true 
+        v([1, 2]).should.be_true 
+      end
+      
+      it "should throw error if false"
+        -{ v('Bob') }.should.throw_error 'Expected [Bob] to be shorter than 3'
+        -{ v([1, 2, 3]) }.should.throw_error 'Expected [1, 2, 3] to be shorter than 3'
+      end
+    end
+    
+    describe "lengthBetween"
+      before
+        v = Check.build({lengthBetween: [3, 5]});
+      end
+      
+      it "should return true of ok"
+        v('Farof').should.be_true 
+      end
+      
+      it "should throw error if false"
+        -{ v('Yo') }.should.throw_error 'Expected [Yo] length to be between 3 and 5'
+        -{ v('javascript') }.should.throw_error 'Expected [javascript] length to be between 3 and 5'
+      end
+    end
+  end
+  
   describe "-> Rule message customization"
     it "should be accessible"
       Check.should.have_prop "rules"
