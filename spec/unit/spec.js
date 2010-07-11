@@ -232,6 +232,20 @@ describe "validator.js"
     end
   end
   
+  describe "-> has"
+    before
+      v = Check.build({has: 42});
+    end
+    
+    it "should return true if ok"
+      v([20, 42, 100]).should.be_true 
+    end
+    
+    it "should throw error when false"
+      -{ v([20, 100]) }.should.throw_error 'Expected [20, 100] to contain [number 42]'
+    end
+  end
+  
   describe "-> Rule message customization"
     it "should be accessible"
       Check.should.have_prop "rules"
