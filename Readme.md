@@ -123,6 +123,10 @@ Check is a lightweight easy to use, easy to customize, validation micro-framewor
 
 	value must be an array that includes the specified data
 
+* in: array
+
+	value must be in specified array
+
 
 #### NOT operator
 
@@ -229,8 +233,6 @@ The following are untested:
 ## Todo
 
 * string length rules
-* inclusion rule
-* check type on range rule ?
 * Suggest anything ?
 
 ## License 

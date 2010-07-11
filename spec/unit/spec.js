@@ -246,6 +246,20 @@ describe "validator.js"
     end
   end
   
+  describe "-> in"
+    before
+      v = Check.build({'in': [1, 3, 5, 7]})
+    end
+    
+    it "should return true if ok"
+      v(5).should.be_true
+    end
+    
+    it "should throw error if false"
+      -{ v(2) }.should.throw_error 'Expected [number 2] to be in [1, 3, 5, 7]'
+    end
+  end
+  
   describe "-> Rule message customization"
     it "should be accessible"
       Check.should.have_prop "rules"
