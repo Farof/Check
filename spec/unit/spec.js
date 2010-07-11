@@ -232,6 +232,22 @@ describe "validator.js"
     end
   end
   
+  describe "-> Rule message customization"
+    it "should be accessible"
+      Check.should.have_prop "rules"
+      Check.rules.defined.should.have_prop "msg"
+    end
+    
+    it "should be customizable"
+      var previous = Check.rules.defined.errorMsg;
+      Check.rules.defined.msg = "Customized error message!"
+      var v = Check.build('defined');
+      
+      -{ v(null) }.should.throw_error "Customized error message!"
+      Check.rules.defined.msg = previous;
+    end
+  end
+  
   describe "-> async validation"
     before
       v = Check.build('defined');
