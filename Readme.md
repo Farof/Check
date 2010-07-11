@@ -119,6 +119,11 @@ Check is a lightweight easy to use, easy to customize, validation micro-framewor
 
 	rule always throw error
 
+* has: data
+
+	value must be an array that includes the specified data
+
+
 #### NOT operator
 
 You can apply a NOT operator by prefixing the rule with a exclamation mark: !
