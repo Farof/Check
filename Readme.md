@@ -7,10 +7,8 @@ Check is a lightweight easy to use, easy to customize, validation micro-framewor
 
 ### Create validator
 
-	var validate = Check.build(function() {
-		// Will test if validated data is defined, of type 'number', and is between 7 and 77
-		this.defined().type('number').between(7, 77);
-	});
+	// Will test if validated data is defined, of type 'number', and is between 7 and 77
+	var validate = Check.build('defined', {between: [7, 77]});
 
 ### Validate data
 
@@ -28,9 +26,8 @@ Check is a lightweight easy to use, easy to customize, validation micro-framewor
 		return this.assert.atLeast(val, this.params[0]);
 	}, 'Expected {val} to be at least {0}');
 	
-	var validate = Check.build(function() {
-		this.isMajor(18); // Majority is set to 18, corresponds to this.params[0] in the previous function
-	});
+	// Majority is set to 18, corresponds to this.params[0] in the previous function
+	var validate = Check.build({isMajor: 18});
 	
 	try {
 		validate(10);
@@ -50,9 +47,7 @@ Check is a lightweight easy to use, easy to customize, validation micro-framewor
 		})
 	});
 	
-	var validate = Check.build(function() {
-		this.type('string').usernameAvailable();
-	});
+	var validate = Check.build({type: 'string'}, 'usernameAvailable');
 	
 	try {
 		validate('Farof', function() {
@@ -65,62 +60,62 @@ Check is a lightweight easy to use, easy to customize, validation micro-framewor
 
 ### Custom error message
 
-	Check.rules.defined.errorMsg = 'Field must be filled';
+	Check.rules.defined.msg = 'Field must be filled';
 
 
 ## Documentation
 
 ### Built-in rules
 
-*	defined()
+*	defined
 
 	value must not be null or undefined
 		
-* is(data)
+* is: data
 
 	tests strict equality (===)
 		
-* type(String || [String, ...])
+* type: String || [String, ...]
 
 	typeof tested value must be one of the types specified
 		
-* gt(Number)
+* gt: Number
 
 	value must be greater than specified number
 		
-* lt(Number)
+* lt: Number
 
 	value must be less than specified number
 		
-* al(Number)
+* al: Number
 
 	value must be at least specified number
 		
-* am(Number)
+* am: Number
 
 	value must be at most specified number
 
-* positiv()
+* positiv
 
 	value must be at least 0
 
-* negativ()
+* negativ
 
 	value must be at most 0 (0 is both positiv and negativ)
 
-* notZero()
+* notZero
 
 	value is different from 0
 		
-* between(Number, Number)
+* between: [Number, Number]
 
 	value must be between the two specified numbers, numbers included (between(10, 20) validates 10 and 20)
 
-* valid()
+* valid
 
 	rule always validate
 
-* invalid()
+* invalid
 
 	rule always throw error
 
@@ -169,11 +164,9 @@ Rules support asynchronous validation.
 
 ### Custom error message
 
-	Check.rules.defined.errorMsg = 'Field must be filled';
+	Check.rules.defined.msg = 'Field must be filled';
 	
-	var validate = Check.build(function() {
-		this.defined();
-	});
+	var validate = Check.build('defined');
 	
 	try {
 		validate(null);
@@ -190,19 +183,17 @@ Let me know if error message customization "by validator" is something you need,
 * Firefox: 3.5, 3.6, Minefield
 * Safari: 4
 * Opera: 10
-* Internet Explorer: 7, 8
 * node
 
 The following are untested:
 
 * Chrome (jspec fails due to a chrome bug but Check should work)
-* Internet Explorer: 9 (won't bother supporting ie6, glad if it works anyway (FYI v0.2.2 works in ie6))
+* Internet Explorer: 7, 8, 9 (should work) (won't bother supporting ie6, glad if it works anyway)
 
 
 ## Todo
 
 * "not" rule operator
-* "and" rule operator
 * "or" rule operator
 * string length rules
 * inclusion rule
