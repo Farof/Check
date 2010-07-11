@@ -328,5 +328,20 @@ describe "validator.js"
         end
       end
     end
+    
+    describe "-> OR"
+      before
+        v = Check.build([{is: 42}, {between: [20, 30]}]);
+      end
+      
+      it "should return true if ok"
+        v(42).should.be_true
+        v(25).should.be_true 
+      end
+      
+      it "should throw error if false"
+        -{ v(37) }.should.throw_error
+      end
+    end
   end
 end
