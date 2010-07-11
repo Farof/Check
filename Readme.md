@@ -7,8 +7,8 @@ Check is a lightweight easy to use, easy to customize, validation micro-framewor
 
 ### Create validator
 
-	// Will test if validated data is defined, of type 'number', and is between 7 and 77
-	var validate = Check.build('defined', {between: [7, 77]});
+	// Will test if validated data is defined, of type 'number', not negativ and is between 7 and 77
+	var validate = Check.build('defined', {type: 'number'}, '!negativ', {between: [7, 77]});
 
 ### Validate data
 
@@ -119,6 +119,18 @@ Check is a lightweight easy to use, easy to customize, validation micro-framewor
 
 	rule always throw error
 
+#### NOT operator
+
+You can apply a NOT operator by prefixing the rule with a exclamation mark: !
+
+	var validate = Check.build('!invalid', {'!is': 42});
+	
+	try {
+		validate(nb);
+		// if nb is not the number 42
+	} catch(e) {
+		// if nb === 42
+	}
 
 
 ### Built-in assertions
@@ -156,15 +168,17 @@ Check is a lightweight easy to use, easy to customize, validation micro-framewor
 
 	Check.addRule('someName', function(val) {
 		return this.someAssertions(val);
-	}, 'Custom error message with special params like {val} or {0}')
+	}, 'Custom error message with special params like {val} or {0}', 'Negation error message with special parameters')
 
 Look at the "Quick how-to" and how the built-in rules are created to fully understand. Really, it's dead simple.  
+A negation error message must be given if you want proper reporting in these case.
 Rules support asynchronous validation.
 
 
 ### Custom error message
 
 	Check.rules.defined.msg = 'Field must be filled';
+	Check.rules.defined.negMsg = 'custom negation message'
 	
 	var validate = Check.build('defined');
 	
@@ -178,9 +192,9 @@ Note: At the moment, message customization affects all validator. That is, betwe
 Let me know if error message customization "by validator" is something you need, I'll maybe add the feature.
 
 
-## Supported plateforms (v0.2.2)
+## Supported plateforms (v0.3.*)
 
-* Firefox: 3.5, 3.6, Minefield
+* Firefox: 3.6, Minefield
 * Safari: 4
 * Opera: 10
 * node
@@ -193,7 +207,6 @@ The following are untested:
 
 ## Todo
 
-* "not" rule operator
 * "or" rule operator
 * string length rules
 * inclusion rule

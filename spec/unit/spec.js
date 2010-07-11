@@ -295,4 +295,38 @@ describe "validator.js"
       mark.should.be_true 
     end
   end
+  
+  describe "-> operators"
+    describe "-> NOT"
+      before
+        v = Check.build('!invalid', {'!type': 'number'});
+      end
+      
+      it "should return true if ok"
+        v(null).should.be_true 
+      end
+      
+      it "should throw error if false"
+        -{ v(5) }.should.throw_error 'Expected [number 5] to not be of type: number'
+      end
+      
+      describe "-> async"
+        before
+          v = Check.build('!asyncReady');
+        end
+        
+        it "should return true if ok"
+          mark = false;
+          v(40, function () { mark = true; })
+          mark.should.be_true 
+        end
+        
+        it "should throw error"
+          mark = false;
+          -{ v(42, function () { mark = true; }) }.should.throw_error 
+          mark.should.be_false 
+        end
+      end
+    end
+  end
 end

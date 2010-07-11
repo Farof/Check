@@ -4,6 +4,7 @@
 
 * syntax rewrite
 * full core rewrite
+* NOT operator
 
 
 0.2.3 / 2010-06-06
