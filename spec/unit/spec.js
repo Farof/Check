@@ -231,4 +231,52 @@ describe "validator.js"
       -{ v('plop') }.should.throw_error 
     end
   end
+  
+  describe "-> async validation"
+    before
+      v = Check.build('defined');
+    end
+    
+    it "should validate asynchrone"
+      mark = false;
+      v(5, function() { mark = true; })
+      mark.should.be_true 
+    end
+    
+    it "should throw error asynchrone"
+      mark = false;
+      try {
+        v(null, function() { mark = false; })
+      } catch(e) {
+        mark = true;
+      }
+      mark.should.be_true 
+    end
+  end
+  
+  describe "-> async rule validation"
+    before
+      Check.addRule("asyncReady", function(val, callback) {
+        callback(null, this.assert.equal(val, 42));
+      });
+      
+      v = Check.build('asyncReady');
+    end
+    
+    it "should validate async rule"
+      mark = false;
+      v(42, function() { mark = true; })
+      mark.should.be_true 
+    end
+    
+    it "should throw async"
+      mark = false;
+      try {
+        v(10, function() { mark = false; })
+      } catch(e) {
+        mark = true;
+      }
+      mark.should.be_true 
+    end
+  end
 end
